@@ -1,0 +1,37 @@
+body {
+    display: flex;
+    height: 100vh;
+    margin: 0;
+}
+.button-container {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.spacer {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: antiquewhite;
+}
+.separator {
+    width: 2px;
+    background-color: #000; /* Black color for the line */
+    height: 100%; /* Full height */
+}
+.button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    transition: background-color 0.3s;
+}
+.button:hover {
+    background-color: #0056b3;
+}
