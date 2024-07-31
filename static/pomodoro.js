@@ -1,4 +1,4 @@
-// run timer
+// run pomodoro timer
 let timer;
 let isRunning = false;
 let timeLeft = 25 * 60; // 25 minutes in seconds
@@ -64,25 +64,6 @@ updateDisplay();
 
 
 
-
-
-
-// Dark mode toggle functionality
-const darkModeButton = document.getElementById('darkModeButton');
-let isDarkMode = false;
-
-darkModeButton.addEventListener('click', function (event) {
-    event.preventDefault(); // Prevent default anchor behavior
-    isDarkMode = !isDarkMode; // Toggle the dark mode state
-
-    if (isDarkMode) {
-        document.body.classList.add('dark-mode');
-        darkModeButton.querySelector('button').textContent = 'Light mode'; // Change button text
-    } else {
-        document.body.classList.remove('dark-mode');
-        darkModeButton.querySelector('button').textContent = 'Dark mode'; // Change button text back
-    }
-});
 
 
 

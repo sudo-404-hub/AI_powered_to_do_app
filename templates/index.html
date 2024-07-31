@@ -9,78 +9,99 @@
 
 <body>
 
+    <!-- Button container for navigation -->
     <div class="button-container">
-        
-        <a id="todoButton"><button class="button">TO DO LIST</button></a>
-        <a id="pomodoroButton"><button class="button">POMODORO</button></a>
-        <a                   ><button class="button">SETTING</button></a>
+        <a id="Welcome"><button class="button">Welcome</button></a>
+        <a id="pomodoroButton"><button class="button">TO-DO List</button></a>
+        <a id="settingButton"><button class="button">SETTING</button></a>
+        <a id="LofyBeatsButton"><button class="button">Lofy Beats</button></a>
         <a id="darkModeButton"><button class="button">Dark mode</button></a>
     </div>
 
-    <div class="spacer" id="todoList">
-        <h2 class="tdl_heading">My To-Do List</h2>
+    <!-- Welcome message section -->
+    <div id="welcomeMessage" style="display: block;">
+        <h2>Welcome to the ai powerd To-Do List</h2>
+    </div>
+
+    <!-- Pomodoro Timer section with integrated To-Do List functionality -->
+    <div class="pomodoro-container" id="pomodoroTimer" style="display: none;">
+        <div id="my_pomodoro">
+            <h2>Pomodoro Timer</h2>
+            <div class="timerDisplay" id="timerDisplay">25:00</div>
+            <div class="pomodoro-button-container">
+                <button class="button-on" id="startButton">Start</button>
+                <button class="button-off" id="stopButton" disabled>Stop</button>
+                <button class="button-off" id="resetButton">Reset</button>
+            </div>
+        </div>
+        <!-- To-Do List functionality integrated into the Pomodoro section -->
+        <h3>My Tasks</h3>
         <input type="text" id="taskInput" placeholder="Add a new task...">
         <button class="button" id="addTaskButton">Add Task</button>
-        <ul id="taskList"></ul>
+        <ul id="taskList"></ul> <!-- List to display tasks -->
     </div>
 
-    <div class="pomodoro-container" id="pomodoroTimer" style="display: none;">
-        <h2>Pomodoro Timer</h2>
-        <div class="timerDisplay" id="timerDisplay">25:00</div>
-        <div class="pomodoro-button-container">
-            <button id="startButton">Start</button>
-            <button id="stopButton" disabled>Stop</button>
-            <button id="resetButton">Reset</button>
-        </div>
-        <ul id="pomodoroTaskList"></ul> <!-- New UL for tasks -->
+    <!-- Settings section -->
+    <div id="settings" style="display: none;">
+        <h2>Settings</h2>
+        <p>Adjust your preferences here.</p>
+        <!-- Add your settings options here -->
+        <h2>ON/OFF pomodoro</h2>
+        <button id="pomoON" class="button-on">ON</button>
+        <button id="pomoOFF" class="button-inactive">OFF</button>
     </div>
-
-
-
-
-
-
-
-
-
-
-
 
     <script>
-        const tasks = []; // Array to hold tasks
+        // Initialize the tasks array to store tasks
+        const tasks = [];
 
-        document.getElementById('todoButton').addEventListener('click', function () {
-            document.getElementById('todoList').style.display = 'block'; // Show To-Do List
-            document.getElementById('pomodoroTimer').style.display = 'none'; // Hide Pomodoro Timer
-        });
-
+        // Event listener for the Pomodoro button
         document.getElementById('pomodoroButton').addEventListener('click', function () {
-            document.getElementById('pomodoroTimer').style.display = 'block'; // Show Pomodoro Timer
-            document.getElementById('todoList').style.display = 'none'; // Hide To-Do List
+            showSection('pomodoroTimer'); // Show the Pomodoro Timer section
         });
 
-        document.getElementById('addTaskButton').addEventListener('click', function () {
-            const taskInput = document.getElementById('taskInput');
-            const taskText = taskInput.value.trim();
+        // Event listener for the Settings button
+        document.getElementById('settingButton').addEventListener('click', function () {
+            showSection('settings'); // Show the Settings section
+        });
 
+        // Event listener for the Welcome button
+        document.getElementById('Welcome').addEventListener('click', function () {
+            showSection('welcomeMessage'); // Show the Welcome message section
+        });
+
+        // Function to show the selected section and hide others
+        function showSection(sectionId) {
+            // Hide all sections
+            document.getElementById('welcomeMessage').style.display = 'none';
+            document.getElementById('pomodoroTimer').style.display = 'none';
+            document.getElementById('settings').style.display = 'none';
+
+            // Show the selected section
+            document.getElementById(sectionId).style.display = 'block';
+        }
+
+        // Event listener for the Add Task button
+        document.getElementById('addTaskButton').addEventListener('click', function () {
+            const taskInput = document.getElementById('taskInput'); // Get the input field
+            const taskText = taskInput.value.trim(); // Get the trimmed input value
+
+            // Check if the input is not empty
             if (taskText) {
                 const task = { text: taskText }; // Create a task object
                 tasks.push(task); // Add task to the array
-
-                // Append the new task to both lists
-                appendTaskToList(task, 'taskList');
-                appendTaskToList(task, 'pomodoroTaskList');
-
+                appendTaskToList(task); // Append to the task list
                 taskInput.value = ''; // Clear the input field
             } else {
-                alert('Please enter a task.');
+                alert('Please enter a task.'); // Alert if input is empty
             }
         });
 
-        function appendTaskToList(task, listId) {
-            const li = document.createElement('li');
-            li.className = 'task-item';
-            li.textContent = task.text;
+        // Function to append a task to the task list
+        function appendTaskToList(task) {
+            const li = document.createElement('li'); // Create a new list item
+            li.className = 'task-item'; // Set class for styling
+            li.textContent = task.text; // Set the text of the list item
 
             // Create the Google Search button
             const googleSearchButton = document.createElement('button');
@@ -88,7 +109,7 @@
             googleSearchButton.className = 'google-search-button';
             googleSearchButton.addEventListener('click', function () {
                 const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(task.text)}`;
-                window.open(searchUrl, '_blank');
+                window.open(searchUrl, '_blank'); // Open Google search in a new tab
             });
 
             // Create the delete button
@@ -105,7 +126,7 @@
             aiButton.textContent = 'AI Search';
             aiButton.className = 'google-search-button';
             aiButton.addEventListener('click', function () {
-                alert('AI Search functionality not implemented yet.');
+                alert('AI Search functionality not implemented yet.'); // Placeholder for AI search
             });
 
             // Append buttons to the list item
@@ -113,22 +134,71 @@
             li.appendChild(aiButton);
             li.appendChild(deleteButton);
 
-            // Append the list item to the specified list
-            document.getElementById(listId).appendChild(li);
+            // Append the list item to the task list
+            document.getElementById('taskList').appendChild(li);
         }
 
+        // Function to delete a task from the tasks array
         function deleteTask(task) {
-            const index = tasks.indexOf(task);
+            const index = tasks.indexOf(task); // Find the index of the task
             if (index > -1) {
                 tasks.splice(index, 1); // Remove the task from the array
             }
         }
+
+
+
+
+
+
+
+
+        
+// Dark mode toggle functionality
+const darkModeButton = document.getElementById('darkModeButton');
+let isDarkMode = false;
+
+// Handle dark mode toggle
+darkModeButton.addEventListener('click', function (event) {
+    event.preventDefault(); // Prevent default anchor behavior
+    isDarkMode = !isDarkMode; // Toggle the dark mode state
+
+    if (isDarkMode) {
+        document.body.classList.add('dark-mode');
+        darkModeButton.querySelector('button').textContent = 'Light mode'; // Change button text
+    } else {
+        document.body.classList.remove('dark-mode');
+        darkModeButton.querySelector('button').textContent = 'Dark mode'; // Change button text back
+    }
+});
+
+
+
+    // Event listeners for ON/OFF buttons
+    document.getElementById('pomoON').addEventListener('click', function () {
+        document.getElementById('my_pomodoro').style.display = 'block'; // Show Pomodoro div
+        
+        // Set pomoON button to active and pomoOFF to inactive
+        this.classList.add('button-on');
+        this.classList.remove('button-inactive');
+        document.getElementById('pomoOFF').classList.add('button-inactive');
+        document.getElementById('pomoOFF').classList.remove('button-off');
+    });
+
+    document.getElementById('pomoOFF').addEventListener('click', function () {
+        document.getElementById('my_pomodoro').style.display = 'none'; // Hide Pomodoro div
+
+        // Set pomoOFF button to active and pomoON to inactive
+        this.classList.add('button-off');
+        this.classList.remove('button-inactive');
+        document.getElementById('pomoON').classList.add('button-inactive');
+        document.getElementById('pomoON').classList.remove('button-on');
+    });
+</script>
+
     </script>
 
-
-
-
-    <script src="../static/pomodoro.js"></script>
+    <script src="../static/pomodoro.js"></script> <!-- Link to external Pomodoro script -->
 
 </body>
 

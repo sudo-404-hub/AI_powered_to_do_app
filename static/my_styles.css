@@ -175,78 +175,96 @@ body {
 
 
 
+
+
+
+
+
+/* Dark Mode Styles */
 /* Dark Mode Styles */
 body.dark-mode {
     background-color: #121212;
-    /* Dark background */
     color: #ffffff;
-    /* Light text color */
 }
 
 body.dark-mode .spacer {
     background-color: #1e1e1e;
-    /* Darker background for the main area */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    /* Darker shadow */
 }
 
 body.dark-mode .button {
     background-color: #007BFF;
-    /* Purple button for dark mode */
 }
 
 body.dark-mode .button:hover {
     background-color: #0056b3;
-    /* Darker purple on hover */
 }
 
 body.dark-mode #taskInput {
     background-color: #333;
-    /* Dark input background */
     color: #ffffff;
-    /* Light text color */
     border: 1px solid #555;
-    /* Darker border */
 }
 
 body.dark-mode .task-item {
     background-color: #2c2c2c;
-    /* Darker background for tasks */
     border: 1px solid #444;
-    /* Darker border for tasks */
 }
 
 body.dark-mode .delete-button {
     background-color: #ff4d4d;
-    /* Red color for delete button */
 }
 
 body.dark-mode .delete-button:hover {
     background-color: #e60000;
-    /* Darker red on hover */
 }
 
 body.dark-mode .tdl_heading {
     color: white;
-    /* Change heading color to white in dark mode */
 }
-body.dark-mode .timerDisplay{
+
+body.dark-mode .timerDisplay {
     color: whitesmoke;
 }
-body.dark-mode h2{
+
+body.dark-mode h2 {
     color: whitesmoke;
 }
+
+/* CSS for the toggle switch in dark mode */
+body.dark-mode .switch input:checked + .slider {
+    background-color: #2196F3;
+}
+
+body.dark-mode .slider {
+    background-color: #333;
+}
+
+body.dark-mode .slider:before {
+    background-color: #555;
+}
+
 /* end */
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 .pomodoro-container {
     margin: 5%;
     width: 90%;
-    border: 2px solid black;
 }
 .timerDisplay{
-    border: 2px solid black;
     padding-left: 40%;
     font-size: 48px; /* Adjust this value based on your needs */
     font-weight: bold; /* Make it bold for better visibility */
@@ -255,7 +273,6 @@ body.dark-mode h2{
 
 }
 .pomodoro-button-container{
-    border: 2px solid black;
     padding-left:35%;
 }
 
@@ -290,4 +307,212 @@ button:disabled {
     color: #666; /* Darker gray text for disabled button */
     cursor: not-allowed; /* Not-allowed cursor for disabled button */
     box-shadow: none; /* Remove shadow for disabled button */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*css for dark mode button */
+/* Base styles for the switch container */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  /* Hide the default checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* Styles for the slider (the moving part of the switch) */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+  }
+  
+  /* The slider before the switch is checked */
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    border-radius: 50%;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+  }
+  
+  /* Change the slider background color when checked */
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  /* Move the slider to the right when checked */
+  input:checked + .slider:before {
+    transform: translateX(26px);
+  }
+  
+  /* Add a smooth transition effect */
+  .slider {
+    transition: background-color .4s, transform .4s;
+  }
+  
+  /* Optional: Add a glow effect or other animations */
+  .slider {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Ensure the switch is visible */
+  .switch {
+    display: flex;
+    align-items: center;
+  }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* CSS for the toggle switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    border-radius: 50%;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.slider {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.switch {
+    display: flex;
+    align-items: center;
+}
+
+/* Optional: Add a label for better accessibility */
+.switch + span {
+    margin-left: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+
+
+
+
+
+
+
+/* Style for the active ON button */
+.button-on {
+    background-color: #3cbe41;
+    color: white;
+}
+.button-on:hover{
+    background-color: #028106;
+    color: white;
+}
+
+/* Style for the active OFF button */
+.button-off {
+    background-color: #f44336;
+    color: white;
+}
+.button-off:hover {
+    background-color: #aa190f;
+    color: white;
+}
+
+/* Style for inactive buttons */
+.button-inactive {
+    background-color: #e0e0e0;
+    color: #000;
+}
+
+/* Button styling in dark mode */
+body.dark-mode .button-on {
+    background-color: #4CAF50;
+}
+
+body.dark-mode .button-off {
+    background-color: #f44336;
+}
+
+body.dark-mode .button-inactive {
+    background-color: #555;
+    color: #ccc;
 }
