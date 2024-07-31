@@ -1,25 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-     <link rel= "stylesheet" type= "text/css" href= "../static/my_styles.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>welcome</title>
 
+<head>
+    <link rel="stylesheet" type="text/css" href="../static/my_styles.css">
+    <meta charset="UTF-8">
+    <title>TO DO LIST</title>
 </head>
+
 <body>
 
     <div class="button-container">
-        <a href="to_do_list.html"><button class="button">TO DO LIST</button></a>
-        <a href="to_do_list.html"><button class="button">POMODORO</button></a>
-        <a href="to_do_list.html"><button class="button">SETTING</button></a>
-        <a href="to_do_list.html"><button class="button">Dark mode</button></a>
+        
+        <a id="todoButton"><button class="button">TO DO LIST</button></a>
+        <a id="pomodoroButton"><button class="button">POMODORO</button></a>
+        <a                   ><button class="button">SETTING</button></a>
+        <a id="darkModeButton"><button class="button">Dark mode</button></a>
     </div>
 
-    <div class="spacer">
-        <h1>welcome to AI POWERED TO DO LIST</h1>
+    <div class="spacer" id="todoList">
+        <h2 class="tdl_heading">My To-Do List</h2>
+        <input type="text" id="taskInput" placeholder="Add a new task...">
+        <button class="button" id="addTaskButton">Add Task</button>
+        <ul id="taskList"></ul>
     </div>
 
+    <div class="pomodoro-container" id="pomodoroTimer" style="display: none;">
+        <h2>Pomodoro Timer</h2>
+        <div class="timerDisplay" id="timerDisplay">25:00</div>
+        <div class="pomodoro-button-container">
+            <button id="startButton">Start</button>
+            <button id="stopButton" disabled>Stop</button>
+            <button id="resetButton">Reset</button>
+        </div>
+        <ul id="pomodoroTaskList"></ul> <!-- New UL for tasks -->
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+        const tasks = []; // Array to hold tasks
+
+        document.getElementById('todoButton').addEventListener('click', function () {
+            document.getElementById('todoList').style.display = 'block'; // Show To-Do List
+            document.getElementById('pomodoroTimer').style.display = 'none'; // Hide Pomodoro Timer
+        });
+
+        document.getElementById('pomodoroButton').addEventListener('click', function () {
+            document.getElementById('pomodoroTimer').style.display = 'block'; // Show Pomodoro Timer
+            document.getElementById('todoList').style.display = 'none'; // Hide To-Do List
+        });
+
+        document.getElementById('addTaskButton').addEventListener('click', function () {
+            const taskInput = document.getElementById('taskInput');
+            const taskText = taskInput.value.trim();
+
+            if (taskText) {
+                const task = { text: taskText }; // Create a task object
+                tasks.push(task); // Add task to the array
+
+                // Append the new task to both lists
+                appendTaskToList(task, 'taskList');
+                appendTaskToList(task, 'pomodoroTaskList');
+
+                taskInput.value = ''; // Clear the input field
+            } else {
+                alert('Please enter a task.');
+            }
+        });
+
+        function appendTaskToList(task, listId) {
+            const li = document.createElement('li');
+            li.className = 'task-item';
+            li.textContent = task.text;
+
+            // Create the Google Search button
+            const googleSearchButton = document.createElement('button');
+            googleSearchButton.textContent = 'Google Search';
+            googleSearchButton.className = 'google-search-button';
+            googleSearchButton.addEventListener('click', function () {
+                const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(task.text)}`;
+                window.open(searchUrl, '_blank');
+            });
+
+            // Create the delete button
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.className = 'delete-button';
+            deleteButton.addEventListener('click', function () {
+                li.remove(); // Remove from the DOM
+                deleteTask(task); // Remove from the tasks array
+            });
+
+            // Create a button for AI search
+            const aiButton = document.createElement('button');
+            aiButton.textContent = 'AI Search';
+            aiButton.className = 'google-search-button';
+            aiButton.addEventListener('click', function () {
+                alert('AI Search functionality not implemented yet.');
+            });
+
+            // Append buttons to the list item
+            li.appendChild(googleSearchButton);
+            li.appendChild(aiButton);
+            li.appendChild(deleteButton);
+
+            // Append the list item to the specified list
+            document.getElementById(listId).appendChild(li);
+        }
+
+        function deleteTask(task) {
+            const index = tasks.indexOf(task);
+            if (index > -1) {
+                tasks.splice(index, 1); // Remove the task from the array
+            }
+        }
+    </script>
+
+
+
+
+    <script src="../static/pomodoro.js"></script>
 
 </body>
+
 </html>

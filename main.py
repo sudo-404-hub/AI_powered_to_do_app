@@ -6,10 +6,6 @@ app = Flask(__name__)
 def welcome():
     return render_template("index.html")
 
-@app.route("/to_do_list.html")
-def to_do_list():
-    return render_template("to_do_list.html")
-
 
 
 if __name__=="__main__":
