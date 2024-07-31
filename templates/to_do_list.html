@@ -1,39 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="stylesheet" type="text/css" href="../static/my_styles.css">
     <meta charset="UTF-8">
     <title>TO DO LIST</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        .button-container {
-            margin-bottom: 20px;
-        }
-        .button {
-            margin-right: 10px;
-        }
-        #taskList {
-            list-style-type: none;
-            padding: 0;
-        }
-        .task-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 5px 0;
-        }
-        .delete-button {
-            background-color: red;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-    </style>
 </head>
+
 <body>
     <div class="button-container">
         <a href="to_do_list.html"><button class="button">TO DO LIST</button></a>
@@ -44,15 +17,30 @@
 
     <div class="spacer">
 
-    <h2>My To-Do List</h2>
-    <input type="text" id="taskInput" placeholder="Add a new task...">
-    <button id="addTaskButton">Add Task</button>
+        <h2 class="tdl_heading">My To-Do List </h2>
+        <br><br>
+        <input type="text" id="taskInput"  placeholder="Add a new task...">
+        <br><br>
+        <button id="addTaskButton" class="button">Add Task</button>
 
-    <ul id="taskList"></ul>
-</div>
+        <ul id="taskList"></ul>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <script>
-        document.getElementById('addTaskButton').addEventListener('click', function() {
+        document.getElementById('addTaskButton').addEventListener('click', function () {
             const taskInput = document.getElementById('taskInput');
             const taskText = taskInput.value.trim();
 
@@ -64,7 +52,7 @@
                 const deleteButton = document.createElement('button');
                 deleteButton.textContent = 'Delete';
                 deleteButton.className = 'delete-button';
-                deleteButton.addEventListener('click', function() {
+                deleteButton.addEventListener('click', function () {
                     li.remove();
                 });
 
@@ -78,4 +66,5 @@
     </script>
 
 </body>
+
 </html>

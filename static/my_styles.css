@@ -2,7 +2,10 @@ body {
     display: flex;
     height: 100vh;
     margin: 0;
+    font-family: 'Arial', sans-serif; /* Modern font */
+    background-color: #f4f4f4; /* Light background for contrast */
 }
+
 .button-container {
     width: 20%;
     display: flex;
@@ -10,28 +13,94 @@ body {
     justify-content: space-around;
     align-items: center;
 }
+
 .spacer {
     width: 80%;
     display: flex;
+    flex-direction: column; /* Stack elements vertically */
     justify-content: center;
     align-items: center;
-    background-color: antiquewhite;
+    background-color: #ffffff; /* White background for the main area */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 20px; /* Padding for spacing */
 }
+
 .separator {
     width: 2px;
     background-color: #000; /* Black color for the line */
     height: 100%; /* Full height */
 }
+
 .button {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
     border: none;
-    border-radius: 5px;
-    background-color: #007BFF;
+    border-radius: 5px; /* Rounded corners */
+    background-color: #007BFF; /* Primary color */
     color: white;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
+
 .button:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; /* Darker shade on hover */
+    transform: translateY(-2px); /* Lift effect on hover */
+}
+
+.tdl_heading {
+    color: #333; /* Darker text color for better readability */
+    margin-bottom: 20px; /* Space below the heading */
+}
+
+#taskInput {
+    width: 100%; /* Full width */
+    padding: 10px; /* Padding for input */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+    transition: border-color 0.3s; /* Smooth border color transition */
+}
+
+#taskInput:focus {
+    border-color: #007BFF; /* Change border color on focus */
+    outline: none; /* Remove default outline */
+}
+
+#taskList {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove padding */
+    margin-top: 20px; /* Space above the task list */
+    width: 100%; /* Full width */
+}
+
+.task-item {
+    display: flex; /* Flexbox for task item */
+    justify-content: space-between; /* Space between text and button */
+    align-items: center; /* Center vertically */
+    padding: 10px; /* Padding for task item */
+    border: 1px solid #e0e0e0; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+    margin-bottom: 10px; /* Space between tasks */
+    background-color: #f9f9f9; /* Light background for tasks */
+    transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+.task-item:hover {
+    background-color: #f1f1f1; /* Change background on hover */
+}
+
+.delete-button {
+    background-color: #ff4d4d; /* Red color for delete button */
+    color: white;
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    padding: 5px 10px; /* Padding for delete button */
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.delete-button:hover {
+    background-color: #e60000; /* Darker red on hover */
 }
