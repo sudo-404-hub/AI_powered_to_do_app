@@ -14,7 +14,11 @@
         <a id="Welcome"><button class="button">Welcome</button></a>
         <a id="pomodoroButton"><button class="button">TO-DO List</button></a>
         <a id="settingButton"><button class="button">SETTING</button></a>
-        <a id="LofyBeatsButton"><button class="button">Lofy Beats</button></a>
+        <!-- Button to play lo-fi beats -->
+        <button id="lofySongButton" class="button paused">Play Lo-fi Beats</button>
+
+        <!-- Audio element -->
+        <audio id="lofySong" src="../static/LoFi.mp3" preload="auto"></audio>
         <a id="darkModeButton"><button class="button">Dark mode</button></a>
     </div>
 
@@ -52,6 +56,22 @@
     </div>
 
     <script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         // Initialize the tasks array to store tasks
         const tasks = [];
 
@@ -153,48 +173,7 @@
 
 
 
-        
-// Dark mode toggle functionality
-const darkModeButton = document.getElementById('darkModeButton');
-let isDarkMode = false;
-
-// Handle dark mode toggle
-darkModeButton.addEventListener('click', function (event) {
-    event.preventDefault(); // Prevent default anchor behavior
-    isDarkMode = !isDarkMode; // Toggle the dark mode state
-
-    if (isDarkMode) {
-        document.body.classList.add('dark-mode');
-        darkModeButton.querySelector('button').textContent = 'Light mode'; // Change button text
-    } else {
-        document.body.classList.remove('dark-mode');
-        darkModeButton.querySelector('button').textContent = 'Dark mode'; // Change button text back
-    }
-});
-
-
-
-    // Event listeners for ON/OFF buttons
-    document.getElementById('pomoON').addEventListener('click', function () {
-        document.getElementById('my_pomodoro').style.display = 'block'; // Show Pomodoro div
-        
-        // Set pomoON button to active and pomoOFF to inactive
-        this.classList.add('button-on');
-        this.classList.remove('button-inactive');
-        document.getElementById('pomoOFF').classList.add('button-inactive');
-        document.getElementById('pomoOFF').classList.remove('button-off');
-    });
-
-    document.getElementById('pomoOFF').addEventListener('click', function () {
-        document.getElementById('my_pomodoro').style.display = 'none'; // Hide Pomodoro div
-
-        // Set pomoOFF button to active and pomoON to inactive
-        this.classList.add('button-off');
-        this.classList.remove('button-inactive');
-        document.getElementById('pomoON').classList.add('button-inactive');
-        document.getElementById('pomoON').classList.remove('button-on');
-    });
-</script>
+    </script>
 
     </script>
 

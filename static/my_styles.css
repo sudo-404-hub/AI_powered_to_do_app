@@ -1,11 +1,14 @@
 body {
     display: flex;
     height: 100vh;
-    margin: 0;
     font-family: 'Arial', sans-serif;
     /* Modern font */
     background-color: #f4f4f4;
     /* Light background for contrast */
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s, color 0.3s;
+    /* Smooth transition */
 }
 
 .button-container {
@@ -232,7 +235,7 @@ body.dark-mode h2 {
 }
 
 /* CSS for the toggle switch in dark mode */
-body.dark-mode .switch input:checked + .slider {
+body.dark-mode .switch input:checked+.slider {
     background-color: #2196F3;
 }
 
@@ -264,49 +267,76 @@ body.dark-mode .slider:before {
     margin: 5%;
     width: 90%;
 }
-.timerDisplay{
+
+.timerDisplay {
     padding-left: 40%;
-    font-size: 48px; /* Adjust this value based on your needs */
-    font-weight: bold; /* Make it bold for better visibility */
-    color: #333; /* Dark color for contrast */
-    margin: 20px 0; /* Space above and below the timer */
+    font-size: 48px;
+    /* Adjust this value based on your needs */
+    font-weight: bold;
+    /* Make it bold for better visibility */
+    color: #333;
+    /* Dark color for contrast */
+    margin: 20px 0;
+    /* Space above and below the timer */
 
 }
-.pomodoro-button-container{
-    padding-left:35%;
+
+.pomodoro-button-container {
+    padding-left: 35%;
 }
 
 h2 {
-    font-size: 36px; /* Default size for larger screens */
-    font-weight: bold; /* Make it bold for emphasis */
-    color: #333; /* Dark color for contrast */
-    margin: 20px 0; /* Space above and below the heading */
-    text-align: center; /* Center the heading */
+    font-size: 36px;
+    /* Default size for larger screens */
+    font-weight: bold;
+    /* Make it bold for emphasis */
+    color: #333;
+    /* Dark color for contrast */
+    margin: 20px 0;
+    /* Space above and below the heading */
+    text-align: center;
+    /* Center the heading */
 }
 
 button {
-    font-size: 18px; /* Font size for buttons */
-    padding: 10px 20px; /* Padding for buttons */
-    margin: 5px; /* Margin between buttons */
-    cursor: pointer; /* Pointer cursor on hover */
-    border: none; /* Remove default border */
-    border-radius: 5px; /* Rounded corners */
-    background-color: #007BFF; /* Primary color */
-    color: white; /* Text color */
-    transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    font-size: 18px;
+    /* Font size for buttons */
+    padding: 10px 20px;
+    /* Padding for buttons */
+    margin: 5px;
+    /* Margin between buttons */
+    cursor: pointer;
+    /* Pointer cursor on hover */
+    border: none;
+    /* Remove default border */
+    border-radius: 5px;
+    /* Rounded corners */
+    background-color: #007BFF;
+    /* Primary color */
+    color: white;
+    /* Text color */
+    transition: background-color 0.3s, transform 0.2s;
+    /* Smooth transitions */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
 }
 
 button:hover {
-    background-color: #0056b3; /* Darker shade on hover */
-    transform: translateY(-2px); /* Lift effect on hover */
+    background-color: #0056b3;
+    /* Darker shade on hover */
+    transform: translateY(-2px);
+    /* Lift effect on hover */
 }
 
 button:disabled {
-    background-color: #ccc; /* Gray color for disabled button */
-    color: #666; /* Darker gray text for disabled button */
-    cursor: not-allowed; /* Not-allowed cursor for disabled button */
-    box-shadow: none; /* Remove shadow for disabled button */
+    background-color: #ccc;
+    /* Gray color for disabled button */
+    color: #666;
+    /* Darker gray text for disabled button */
+    cursor: not-allowed;
+    /* Not-allowed cursor for disabled button */
+    box-shadow: none;
+    /* Remove shadow for disabled button */
 }
 
 
@@ -320,74 +350,6 @@ button:disabled {
 
 
 
-/*css for dark mode button */
-/* Base styles for the switch container */
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-  }
-  
-  /* Hide the default checkbox */
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  /* Styles for the slider (the moving part of the switch) */
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-    border-radius: 34px;
-  }
-  
-  /* The slider before the switch is checked */
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    border-radius: 50%;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
-  }
-  
-  /* Change the slider background color when checked */
-  input:checked + .slider {
-    background-color: #2196F3;
-  }
-  
-  /* Move the slider to the right when checked */
-  input:checked + .slider:before {
-    transform: translateX(26px);
-  }
-  
-  /* Add a smooth transition effect */
-  .slider {
-    transition: background-color .4s, transform .4s;
-  }
-  
-  /* Optional: Add a glow effect or other animations */
-  .slider {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* Ensure the switch is visible */
-  .switch {
-    display: flex;
-    align-items: center;
-  }
-  
 
 
 
@@ -408,7 +370,7 @@ button:disabled {
 
 
 
-  /* CSS for the toggle switch */
+/* CSS for the toggle switch */
 .switch {
     position: relative;
     display: inline-block;
@@ -446,11 +408,11 @@ button:disabled {
     transition: .4s;
 }
 
-input:checked + .slider {
+input:checked+.slider {
     background-color: #2196F3;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
     transform: translateX(26px);
 }
 
@@ -464,7 +426,7 @@ input:checked + .slider:before {
 }
 
 /* Optional: Add a label for better accessibility */
-.switch + span {
+.switch+span {
     margin-left: 10px;
     font-size: 16px;
     color: #333;
@@ -482,7 +444,8 @@ input:checked + .slider:before {
     background-color: #3cbe41;
     color: white;
 }
-.button-on:hover{
+
+.button-on:hover {
     background-color: #028106;
     color: white;
 }
@@ -492,6 +455,7 @@ input:checked + .slider:before {
     background-color: #f44336;
     color: white;
 }
+
 .button-off:hover {
     background-color: #aa190f;
     color: white;
@@ -515,4 +479,48 @@ body.dark-mode .button-off {
 body.dark-mode .button-inactive {
     background-color: #555;
     color: #ccc;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+#lofySongButton {
+    color: white;
+    border: none;
+    border-radius: 5px;
+    /* Rounded corners */
+    padding: 10px 20px;
+    /* Padding for the button */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    /* Smooth transitions */
+    font-size: 16px;
+    /* Font size for the button */
+}
+
+/* Play button style */
+#lofySongButton.playing {
+    background-color: #4CAF50;
+    /* Green color when playing */
+}
+
+/* Pause button style */
+#lofySongButton.paused {
+    background-color: #f44336;
+    /* Red color when paused */
+}
+
+/* Hover effect */
+#lofySongButton:hover {
+    opacity: 0.8;
+    /* Slightly fade on hover */
 }
