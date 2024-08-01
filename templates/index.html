@@ -24,7 +24,7 @@
 
     <!-- Welcome message section -->
     <div id="welcomeMessage" style="display: block;">
-        <h2>Welcome to the ai powerd To-Do List</h2>
+        <h2>Welcome to the AI powered To-Do List</h2>
     </div>
 
     <!-- Pomodoro Timer section with integrated To-Do List functionality -->
@@ -48,30 +48,29 @@
     <!-- Settings section -->
     <div id="settings" style="display: none;">
         <h2>Settings</h2>
-        <p>Adjust your preferences here.</p>
         <!-- Add your settings options here -->
         <h2>ON/OFF pomodoro</h2>
         <button id="pomoON" class="button-on">ON</button>
         <button id="pomoOFF" class="button-inactive">OFF</button>
     </div>
 
+    <!-- Form to send task input to ai_search.html -->
+    <form id="aiSearchForm" action="/ai_search" method="POST" target="_blank" style="display: none;">
+        <input type="hidden" id="hiddenTaskInput" name="task_input">
+    </form>
+
+
+
+
+
+
+
+
+
+
+
+    
     <script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         // Initialize the tasks array to store tasks
         const tasks = [];
 
@@ -117,68 +116,110 @@
             }
         });
 
-        // Function to append a task to the task list
-        function appendTaskToList(task) {
-            const li = document.createElement('li'); // Create a new list item
-            li.className = 'task-item'; // Set class for styling
-            li.textContent = task.text; // Set the text of the list item
 
-            // Create the Google Search button
-            const googleSearchButton = document.createElement('button');
-            googleSearchButton.textContent = 'Google Search';
-            googleSearchButton.className = 'google-search-button';
-            googleSearchButton.addEventListener('click', function () {
-                const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(task.text)}`;
-                window.open(searchUrl, '_blank'); // Open Google search in a new tab
-            });
 
-            // Create the delete button
-            const deleteButton = document.createElement('button');
-            deleteButton.textContent = 'Delete';
-            deleteButton.className = 'delete-button';
-            deleteButton.addEventListener('click', function () {
-                li.remove(); // Remove from the DOM
-                deleteTask(task); // Remove from the tasks array
-            });
 
-            // Create a button for AI search
-            const aiButton = document.createElement('button');
-            aiButton.textContent = 'AI Search';
-            aiButton.className = 'google-search-button';
-            aiButton.addEventListener('click', function () {
-                alert('AI Search functionality not implemented yet.'); // Placeholder for AI search
-            });
 
-            // Append buttons to the list item
-            li.appendChild(googleSearchButton);
-            li.appendChild(aiButton);
-            li.appendChild(deleteButton);
 
-            // Append the list item to the task list
-            document.getElementById('taskList').appendChild(li);
+
+
+
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+    // Load tasks from local storage on page load
+    loadTasks();
+
+    // Event listener for the Add Task button
+    document.getElementById('addTaskButton').addEventListener('click', function () {
+        const taskInput = document.getElementById('taskInput'); // Get the input field
+        const taskText = taskInput.value.trim(); // Get the trimmed input value
+
+        // Check if the input is not empty
+        if (taskText) {
+            const task = { text: taskText }; // Create a task object
+            addTaskToLocalStorage(task); // Add task to local storage
+            appendTaskToList(task); // Append to the task list
+            taskInput.value = ''; // Clear the input field
+        } else {
+            alert('Please enter a task.'); // Alert if input is empty
         }
+    });
 
-        // Function to delete a task from the tasks array
-        function deleteTask(task) {
-            const index = tasks.indexOf(task); // Find the index of the task
-            if (index > -1) {
-                tasks.splice(index, 1); // Remove the task from the array
-            }
+    // Function to add a task to local storage
+    function addTaskToLocalStorage(task) {
+        const tasks = getTasksFromLocalStorage();
+        tasks.push(task);
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+
+    // Function to get tasks from local storage
+    function getTasksFromLocalStorage() {
+        const tasks = localStorage.getItem('tasks');
+        return tasks ? JSON.parse(tasks) : [];
+    }
+
+    // Function to load tasks from local storage
+    function loadTasks() {
+        const tasks = getTasksFromLocalStorage();
+        tasks.forEach(task => appendTaskToList(task));
+    }
+
+    // Function to append a task to the task list
+    function appendTaskToList(task) {
+        const li = document.createElement('li'); // Create a new list item
+        li.className = 'task-item'; // Set class for styling
+        li.textContent = task.text; // Set the text of the list item
+
+        // Create the Google Search button
+        const googleSearchButton = document.createElement('button');
+        googleSearchButton.textContent = 'Google Search';
+        googleSearchButton.className = 'google-search-button';
+        googleSearchButton.addEventListener('click', function () {
+            const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(task.text)}`;
+            window.open(searchUrl, '_blank'); // Open Google search in a new tab
+        });
+
+        // Create the delete button
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.className = 'delete-button';
+        deleteButton.addEventListener('click', function () {
+            li.remove(); // Remove from the DOM
+            deleteTaskFromLocalStorage(task); // Remove from local storage
+        });
+
+        // Create a button for AI search
+        const aiButton = document.createElement('button');
+        aiButton.textContent = 'AI Search';
+        aiButton.className = 'google-search-button';
+        aiButton.addEventListener('click', function () {
+            document.getElementById('hiddenTaskInput').value = task.text;
+            document.getElementById('aiSearchForm').submit();
+        });
+
+        // Append buttons to the list item
+        li.appendChild(googleSearchButton);
+        li.appendChild(aiButton);
+        li.appendChild(deleteButton);
+
+        // Append the list item to the task list
+        document.getElementById('taskList').appendChild(li);
+    }
+
+    // Function to delete a task from local storage
+    function deleteTaskFromLocalStorage(task) {
+        const tasks = getTasksFromLocalStorage();
+        const index = tasks.findIndex(t => t.text === task.text);
+        if (index > -1) {
+            tasks.splice(index, 1);
+            localStorage.setItem('tasks', JSON.stringify(tasks));
         }
-
-
-
-
-
-
-
+    }
+});
 
     </script>
-
-    </script>
-
-    <script src="../static/pomodoro.js"></script> <!-- Link to external Pomodoro script -->
+    <script src="..//static/pomodoro.js"></script>
 
 </body>
-
 </html>
